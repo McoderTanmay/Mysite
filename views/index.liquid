@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      table {
+        margin-top: 20%;
+      }
+      table > tr > td {
+        width: 200px;
+      }
+      table,
+      tr,
+      td {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <table style="width:50%">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+        </tr>
+        {% for contact in contacts %}
+          <tr>
+            <td>{{ contact.FullName }}</td>
+            <td>{{ contact.Email }}</td>
+            <td>{{ contact.Phone }}</td>
+            <td>
+              <a
+                href='/edit'
+                onclick='document.cookie=`Business_ContactId={{contact.Business_ContactId}};`'
+                '>Edit</a>
+            </td>
+            <td>
+              <a
+                href='/delete'
+                onclick='document.cookie=`Business_ContactId={{contact.Business_ContactId}};`'
+                '>Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      <a href="/logout">Logout</a>
+    </center>
+
+  </body>
+</html>

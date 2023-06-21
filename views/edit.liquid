@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+  </head>
+  <body>
+    <form
+      action="/edit"
+      enctype="application/x-www-form-urlencoded"
+      method="post">
+      <label for="FirstName">First Name</label>
+      <input
+        type="text"
+        name="FirstName"
+        id="FirstName">
+
+      <label for="LastName">Last Name</label>
+      <input
+        type="text"
+        name="LastName"
+        id="LastName">
+
+
+      <label for="Phone">Phone Number</label>
+      <input
+        type="number"
+        name="Phone"
+        id="Phone">
+
+      <label for="Email">Email</label>
+      <input
+        type="email"
+        name="Email"
+        id="Email">
+
+      <input
+        type="submit"
+        value="edit"
+        id="submit-btn">
+    </form>
+  </body>
+</html>

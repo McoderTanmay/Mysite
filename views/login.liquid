@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+      form {
+        display: block;
+        margin-top: 10%;
+        border: solid rgba(107, 107, 107, 0.432) 1px;
+        width: 210px;
+        height: 200px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+      }
+      form > label {
+        margin-top: 1em;
+        display: block;
+        margin-left: 0;
+      }
+      #Submit-btn {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <form
+        action="/login"
+        enctype="application/x-www-form-urlencoded"
+        method="post">
+        <label for="Domainname">Domain Name</label>
+        <input
+          type="text"
+          id="Domainname"
+          name="Domainname">
+        <label for="Username">Username</label>
+        <input
+          type="text"
+          id="Username"
+          name="Username">
+        <label for="Password">Password</label>
+        <input
+          type="password"
+          id="Password"
+          name="Password">
+        <br>
+        <input
+          type="submit"
+          value="login"
+          id="Submit-btn">
+      </form>
+      <p>{{ Error }}</p>
+    </center>
+
+  </body>
+</html>
