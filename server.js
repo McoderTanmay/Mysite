@@ -11,12 +11,7 @@ app.get("/", (req, res) => {
   let errorLogin = req.query["error"];
   res.render("login.liquid", { Error: errorLogin });
 });
-
-// function api_post()
-// {
-
-// }
-
+ // Login
 app.post("/login", (req, res) => {
   const loginUrl = "http://localhost:8092/api.svc/api/Credential/Connect";
   const data = JSON.stringify(req.body);
@@ -61,8 +56,8 @@ app.get("/retrieve", (req, res) => {
     });
 });
 
-app.get("/logout", async (req, res) => {
-  await res.clearCookie("SessionId");
+app.get("/logout", (req, res) => {
+  res.clearCookie("SessionId");
   res.redirect("/");
 });
 
@@ -108,11 +103,12 @@ app.get('/delete',(req,res)=>{
     SessionId: sessionID,
   };
   axios.post("http://localhost:8092/api.svc/api/Business_Contact/DeleteRecord",data,{ headers})
-  .then(async (response)=>{
-    await res.clearCookie("Business_ContactId")
-    res.redirect("/login",{Status:"Record Deleted"});
+  .then( (response)=>{
+    res.clearCookie("Business_ContactId")
+    res.redirect("/retrieve");
   })
   .catch(error=>{
+    res.render('edit.liqid',{Error:error})
     console.log('Error in Deleting :',error);
   })
 });
@@ -132,16 +128,14 @@ app.post("/createRecord", (req, res) => {
       SessionId: sessionId,
   };
 
-  console.log(POSTdata);
   axios
       .post(loginUrl, POSTdata, { headers })
-      .then(async (response) => {
+      .then((response) => {
            console.log(response.status);
-           res.redirect("/login",{Status:"Record Created"});
+           res.redirect("/retrieve");
       })
-      .catch(async (error) => {
-          const errorLogin = await error;
-          console.log(error);
+      .catch((error) => {
+          const errorLogin = error;
           res.redirect("/?error =" + encodeURIComponent(errorLogin));
       });
 })

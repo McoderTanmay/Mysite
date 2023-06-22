@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous">
     <style>
       form {
         display: block;
+        background-color: #e2e3e5;
         margin-top: 10%;
         border: solid rgba(107, 107, 107, 0.432) 1px;
-        width: 210px;
-        height: 200px;
+        width: fit-content;
+        height: auto;
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+        padding: 20px;
       }
       form > label {
         margin-top: 1em;
@@ -50,10 +57,15 @@
         <input
           type="submit"
           value="login"
-          id="Submit-btn">
+          id="Submit-btn"
+          class="btn btn-primary">
       </form>
       <p>{{ Error }}</p>
       <p>{{ Status }}</p>
     </center>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"></script>
   </body>
 </html>
