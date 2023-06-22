@@ -110,13 +110,42 @@ app.get('/delete',(req,res)=>{
   axios.post("http://localhost:8092/api.svc/api/Business_Contact/DeleteRecord",data,{ headers})
   .then(async (response)=>{
     await res.clearCookie("Business_ContactId")
-    res.redirect("/");
+    res.redirect("/login",{Status:"Record Deleted"});
   })
   .catch(error=>{
     console.log('Error in Deleting :',error);
   })
 });
  
+
+
+app.get("/createRecord", (req, res) => {
+  res.render("createRecord.liquid");
+})
+
+app.post("/createRecord", (req, res) => {
+
+  const sessionId = req.cookies["SessionId"];
+  const POSTdata = JSON.stringify(req.body);
+  const loginUrl = "http://localhost:8092/api.svc/api/Business_Contact/CreateRecord"
+  const headers = {
+      SessionId: sessionId,
+  };
+
+  console.log(POSTdata);
+  axios
+      .post(loginUrl, POSTdata, { headers })
+      .then(async (response) => {
+           console.log(response.status);
+           res.redirect("/login",{Status:"Record Created"});
+      })
+      .catch(async (error) => {
+          const errorLogin = await error;
+          console.log(error);
+          res.redirect("/?error =" + encodeURIComponent(errorLogin));
+      });
+})
+
 app.listen(3000, () => {
   console.log("app is running on port: 3000");
 })
