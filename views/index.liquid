@@ -10,17 +10,17 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous">
     <style>
-      .navbar{
+      .navbar {
         background-color: #e2e3e5 !important;
       }
       table {
         margin-top: 10%;
         border-radius: 14px !important;
       }
-       tbody {
+      tbody {
         border-radius: 14px !important;
       }
-      .search-input{
+      .search-input {
         height: 38px;
         border-radius: 15px;
         border: 1px solid;
@@ -79,8 +79,12 @@
           </tr>
         {% endfor %}
       </table>
-      <a href="/createRecord" class="search-button btn btn-primary">Create Record</a>
-      {{Status}}
+      <a
+        class="search-button btn btn-primary"
+        href='/createRecord'
+        onclick='document.cookie=`Business_ContactId={{contact.Business_ContactId}};`'
+        '>Create Record</a>
+      {{ Status }}
     </center>
     <script>
       function searchContacts() {
