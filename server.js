@@ -25,7 +25,7 @@ function api_post(urlsuffix,data,headers,res)
     res.redirect("/retrieve");
   })
   .catch((error) => {
-    res.redirect("/retrieve?error01 =" + encodeURIComponent(error));
+    res.redirect("/retrieve?error=" + encodeURIComponent(error));
   });
 }
 
@@ -48,10 +48,10 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/retrieve", (req, res) => {
-  const error=req.query['error01'];
+  const error01=req.query['error'];
   const sessionID = req.cookies["SessionId"];
   const RETdata = JSON.stringify({
-    Columns: "FullName,Phone,Email,Business_ContactId",
+    Columns: "FullName,Phone,Email,Business_ContactId,FirstName,LastName",
     OrderBy: "FullName",
   });
   const headers = {
@@ -67,7 +67,7 @@ app.get("/retrieve", (req, res) => {
       console.log("Status: ", response.status);
       let contactData = await response.data;
       console.log(contactData);
-      res.render("index.liquid", { contacts: contactData,Error:error });
+      res.render("index.liquid", { contacts: contactData,error:error01 });
     })
     .catch((error) => {
       console.error("Error in retreving:", error);
@@ -80,8 +80,12 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/edit",(req, res) => {
-  res.render("edit.liquid",{});
-
+  const phone=req.query['phone'];
+  const email=req.query['email'];
+  const firstName=req.query['firstName'];
+  const lastName=req.query['lastName'];
+  console.log(phone);
+  res.render("edit.liquid",{"phone":phone,"firstName":firstName,"lastName":lastName,"email":email});
 });
 app.get('/cancel',(req,res)=>{
   res.redirect('/retrieve');
@@ -92,10 +96,9 @@ app.post("/edit", (req, res) => {
   const headers = {
     SessionId: sessionID,
   };
-  const Business_ContactId = req.cookies["Business_ContactId"];
-
+  const contactId = req.query["contactId"];
   const data = JSON.stringify({
-    Business_ContactId,
+    Business_ContactId:contactId,
     FirstName: req.body.FirstName,
     LastName: req.body.LastName,
     Phone: req.body.Phone,
@@ -109,7 +112,7 @@ app.post("/edit", (req, res) => {
 app.get("/delete", (req, res) => {
   const sessionID = req.cookies["SessionId"];
   const data = JSON.stringify({
-    Business_ContactId: req.cookies["Business_ContactId"],
+    Business_ContactId:req.query["contactId"],
   });
   const headers = {
     SessionId: sessionID,

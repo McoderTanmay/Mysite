@@ -67,15 +67,13 @@
               <a
                 id="edit-btn"
                 class="search-button btn btn-primary"
-                href='/edit'
-                onclick=' document.cookie=`Business_ContactId={{contact.Business_ContactId}};`'
+                href='/edit?contactId={{contact.Business_ContactId}}&phone={{contact.Phone}}&firstName={{contact.FirstName}}&lastName={{contact.LastName}}&email={{contact.Email}}'
                 >Edit</a>
             </td>
             <td>
               <a
                 class="search-button btn btn-primary"
-                href='/delete'
-                onclick='document.cookie=`Business_ContactId={{contact.Business_ContactId}};`'
+                href='/delete?contactId={{contact.Business_ContactId}}'
                 '>Delete</a>
             </td>
           </tr>
@@ -84,12 +82,10 @@
       <a
         class="search-button btn btn-primary"
         href='/createRecord'
-        onclick='document.cookie=`Business_ContactId={{contact.Business_ContactId}};`'
-        onclick='document.cookie=`FullName={{contact.FullName}};`'
-        
         '>Create Record</a>
       {{ Status }}
-      {{ Error }}
+      <br>
+      {{ error }}
     </center>
     <script>
       function searchContacts() {
