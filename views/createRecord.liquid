@@ -11,8 +11,7 @@
       crossorigin="anonymous">
     <style>
       form {
-        display: flex;
-        flex-direction: column;
+        display: block;
         background-color: #e2e3e5;
         margin-top: 10%;
         border: solid rgba(107, 107, 107, 0.432) 1px;
@@ -22,9 +21,12 @@
         box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
         padding: 20px;
       }
-      form>input{
-        margin-bottom: 1em;
+      form > label {
+        margin-top: 1em;
+        display: block;
+        margin-left: 0;
       }
+      
     </style>
   </head>
   <body>
@@ -57,12 +59,16 @@
         type="email"
         name="Email"
         id="Email">
-
+        <br><br>
       <input
         type="submit"
         value="create Record"
         id="submit-btn"
         class="btn btn-primary">
+        <a
+        class="btn btn-primary"
+        href='/cancel'
+        >Cancel</a>
     </form>
     </center>
     <script

@@ -38,7 +38,9 @@
       <input
         type="text"
         name="FirstName"
-        id="FirstName">
+        id="FirstName"
+        value=""
+        >
 
       <label for="LastName">Last Name</label>
       <input
@@ -62,9 +64,13 @@
   <br>
       <input
         type="submit"
-        value="edit"
+        value="Update"
         class="search-button btn btn-primary"
         id="submit-btn">
+        <a
+        class="btn btn-primary"
+        href='/cancel'
+        >Cancel Updating</a>
     </form>
     {{Error}}
     </center>

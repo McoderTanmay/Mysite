@@ -63,11 +63,13 @@
             <td>{{ contact.Email }}</td>
             <td>{{ contact.Phone }}</td>
             <td>
+              
               <a
+                id="edit-btn"
                 class="search-button btn btn-primary"
                 href='/edit'
-                onclick='document.cookie=`Business_ContactId={{contact.Business_ContactId}};`'
-                '>Edit</a>
+                onclick=' document.cookie=`Business_ContactId={{contact.Business_ContactId}};`'
+                >Edit</a>
             </td>
             <td>
               <a
@@ -83,8 +85,11 @@
         class="search-button btn btn-primary"
         href='/createRecord'
         onclick='document.cookie=`Business_ContactId={{contact.Business_ContactId}};`'
+        onclick='document.cookie=`FullName={{contact.FullName}};`'
+        
         '>Create Record</a>
       {{ Status }}
+      {{ Error }}
     </center>
     <script>
       function searchContacts() {
@@ -111,3 +116,4 @@
       crossorigin="anonymous"></script>
   </body>
 </html>
+

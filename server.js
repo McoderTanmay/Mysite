@@ -12,11 +12,11 @@ app.get("/", (req, res) => {
   res.render("login.liquid", { Error: errorLogin });
 });
 
-function api_post(urlPrefix,data,headers,res)
+function api_post(urlsuffix,data,headers,res)
 {
   axios
   .post(
-    "https://www.famark.com/host/api.svc/api"+urlPrefix,
+    "https://www.famark.com/host/api.svc/api"+urlsuffix,
     data,
     { headers }
   )
@@ -25,7 +25,7 @@ function api_post(urlPrefix,data,headers,res)
     res.redirect("/retrieve");
   })
   .catch((error) => {
-    res.redirect("/retrieve?error =" + encodeURIComponent(error));
+    res.redirect("/retrieve?error01 =" + encodeURIComponent(error));
   });
 }
 
@@ -48,6 +48,7 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/retrieve", (req, res) => {
+  const error=req.query['error01'];
   const sessionID = req.cookies["SessionId"];
   const RETdata = JSON.stringify({
     Columns: "FullName,Phone,Email,Business_ContactId",
@@ -66,7 +67,7 @@ app.get("/retrieve", (req, res) => {
       console.log("Status: ", response.status);
       let contactData = await response.data;
       console.log(contactData);
-      res.render("index.liquid", { contacts: contactData });
+      res.render("index.liquid", { contacts: contactData,Error:error });
     })
     .catch((error) => {
       console.error("Error in retreving:", error);
@@ -78,11 +79,15 @@ app.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-app.get("/edit", (req, res) => {
-  res.render("edit.liquid");
-});
+app.get("/edit",(req, res) => {
+  res.render("edit.liquid",{});
 
+});
+app.get('/cancel',(req,res)=>{
+  res.redirect('/retrieve');
+})
 app.post("/edit", (req, res) => {
+ 
   const sessionID = req.cookies["SessionId"];
   const headers = {
     SessionId: sessionID,

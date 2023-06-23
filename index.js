@@ -34,3 +34,6 @@
   //   .catch((error) => {
   //     res.redirect("/retrieve?error =" + encodeURIComponent(error));
   //   });
+
+
+  //onclick='document.cookie=`Business_ContactId={{contact.Business_ContactId}};`'
